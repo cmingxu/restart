@@ -7,6 +7,7 @@ get '/' do
 end
 
 post '/restart' do
-  system 'cd /home/deploy/code/GoldFish && git pull origin master && cap deploy'
+  system "mysql -uroot -e 'drop database gold_fish_qa'"
+  system 'cd /home/deploy/code/GoldFish && git pull origin master && cap qa deploy'
   redirect "/"
 end
